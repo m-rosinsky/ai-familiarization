@@ -146,3 +146,11 @@ Now we can prompt the AI about the items in our database:
 | ![image3_6.png](../imgs/image3_6.png) |
 |:--:|
 | _AI tells us which items are in our inventory_ |
+
+### 3.4 Practical Exercise
+
+Expand the tool file to allow the AI to perform the following tasks:
+
+- Update inventory to arbitrary amounts
+- Add items to inventory
+- Remove items from inventory
