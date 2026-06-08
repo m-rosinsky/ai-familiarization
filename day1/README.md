@@ -7,14 +7,18 @@
   - [2.1 Get a Groq API key](#21-get-a-groq-api-key)
   - [2.2 Download Open WebUI Desktop](#22-download-open-webui-desktop)
   - [2.3 Launch and first-time setup](#23-launch-and-first-time-setup)
+- [3. Tools](#3-tools)
+  - [3.a. Setting up our local database](#3a-setting-up-our-local-database)
+  - [3.b. Query the database manually](#3b-query-the-database-manually)
 
 ## 1. Purpose
 
 Students will become familiar with the following concepts of modern AI usage:
 
 - Local and hybrid-hosted models
-- Skills
+- Tools
 - MCPs
+- Skills
 - Loops
 
 ## 2. Setup
@@ -45,19 +49,19 @@ Go to the [Open WebUI Desktop download page](https://github.com/open-webui/deskt
 2. Select the option to **Run Locally**.
 3. Select the **Open WebUI** connection on the left and create a local admin account:
 
-| ![image01.png](../imgs/image01.png) |
+| ![image2_1.png](../imgs/image2_1.png) |
 |:--:|
 | _Create a local admin account_ |
 
 4. You should now see the chat input area:
 
-| ![image02.png](../imgs/image02.png) |
+| ![image2_2.png](../imgs/image2_2.png) |
 |:--:|
 | _Verify Open WebUI_ |
 
 5. Open **Settings** by clicking your profile icon → **Settings**:
 
-| ![image03.png](../imgs/image03.png) |
+| ![image2_3.png](../imgs/image2_3.png) |
 |:--:|
 | _Open settings_ |
 
@@ -73,7 +77,7 @@ Go to the [Open WebUI Desktop download page](https://github.com/open-webui/deskt
    - Paste your Groq API key
    - Press **Save**
 
-| ![image04.png](../imgs/image04.png) |
+| ![image2_4.png](../imgs/image2_4.png) |
 |:--:|
 | _Configure Groq connection_ |
 
@@ -81,12 +85,103 @@ Go to the [Open WebUI Desktop download page](https://github.com/open-webui/deskt
 
    - Select **`llama-3.1-8b-instant`**
 
-| ![image05.png](../imgs/image05.png) |
+| ![image2_5.png](../imgs/image2_5.png) |
 |:--:|
 | _Validate models appear_ |
 
 8. Send a test prompt and verify the model responds:
 
-| ![image06.png](../imgs/image06.png) |
+| ![image2_6.png](../imgs/image2_6.png) |
 |:--:|
 | _Test model response_ |
+
+## 3. Tools
+
+Definition:
+> A specific executable function or API that an AI model can call to interact with the outside world, perform calculations, or fetch data (e.g., a web search tool, a calculator, or a file-writer). The model decides when to use it based on your prompt.
+
+### 3.a. Setting up our local database
+
+We want our AI to query and update a local warehouse inventory database—not just answer from memory.
+
+In order to do this, we'll need to supply our AI with a Tool, which tells it how and when to interact with the database.
+
+First, let's set up a locally hosted database using Python and Sqlite.
+
+From the repo root, run:
+
+```bash
+cd inventory_db
+python init_db.py
+```
+
+This creates `warehouse.db` in `inventory_db/` with an `inventory` table (item name, quantity, location) and seeds it with sample hardware-store stock.
+
+You should see:
+
+```text
+Database initialized successfully with inventory data!
+```
+
+Re-running the script is safe, it won't duplicate existing rows.
+
+### 3.b. Query the database manually
+
+Before wiring the database up to the AI, connect locally and run a few queries yourself. This confirms the data is there and shows what the AI will be working with.
+
+#### Install the SQLite CLI
+
+Check whether `sqlite3` is already available:
+
+```bash
+sqlite3 --version
+```
+
+If that fails, install it for your platform:
+
+**Windows:**
+
+```bash
+winget install SQLite.SQLite
+```
+
+**macOS:**
+
+```bash
+brew install sqlite
+```
+
+**Linux (Debian / Ubuntu):**
+
+```bash
+sudo apt update
+sudo apt install sqlite3
+```
+
+**Linux (Fedora):**
+
+```bash
+sudo dnf install sqlite
+```
+
+#### Run queries with SQLite
+
+From `inventory_db/`:
+
+```bash
+sqlite3 warehouse.db
+```
+
+At the `sqlite>` prompt:
+
+```sql
+.tables
+SELECT * FROM inventory;
+SELECT quantity, location FROM inventory WHERE item_name = 'hammers';
+```
+
+Exit with `.quit`.
+
+| ![image3_1.png](../imgs/image3_1.png) |
+|:--:|
+| _Manual sqlite querying_ |
