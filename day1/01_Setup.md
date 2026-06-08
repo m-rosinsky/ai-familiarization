@@ -1,5 +1,11 @@
 # Setup
 
+## Clone this repo
+
+```bash
+git clone https://github.com/m-rosinsky/ai-familiarization.git
+```
+
 ## Get a Groq API key
 
 Open WebUI will use [Groq](https://groq.com/) to run cloud-hosted models. Groq offers a free tier and does not require a credit card.
