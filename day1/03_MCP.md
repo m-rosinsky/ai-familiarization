@@ -250,3 +250,15 @@ Now we can add our running MCP server address to Open WebUI to use:
 | ![image4_4.png](../imgs/image4_4.png) |
 |:--:|
 | _Warehouse MCP configuration_ |
+
+3. Switching back to chat mode, we should see the MCP server in the **Integrations** dropdown:
+
+| ![image4_5.png](../imgs/image4_5.png) |
+|:--:|
+| _Successful MCP integration_ |
+
+4. Now we can ask about our warehouse inventory just like before, but this time we're delegating the tool calls to our MCP server rather than our client running them directly:
+
+| ![image4_6.png](../imgs/image4_6.png) |
+|:--:|
+| _MCP running in chat_ |
