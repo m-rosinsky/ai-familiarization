@@ -12,6 +12,7 @@ Complete [02_Tools.md](02_Tools.md) before starting this file.
   - [3.1 Install the MCP module](#31-install-the-mcp-module)
   - [3.2 Create the server file](#32-create-the-server-file)
   - [3.3 Start the server](#33-start-the-server)
+  - [3.4 Connect Open WebUI to our MCP](#34-connect-open-webui-to-our-mcp)
 
 ## 1. What is MCP?
 
@@ -25,7 +26,7 @@ So: a Tool is what the model calls; MCP is how those tools (and related context)
 
 ## 2. How does MCP work?
 
-MCP works via a 2-step transaction between the client (in this case our Open WebUI app) and the MCP server
+MCP works via a two-step transaction between the client (in this case our Open WebUI app) and the MCP server.
 
 The two steps are:
 
@@ -52,7 +53,7 @@ Here is a sample payload the client might send:
 }
 ```
 
-and here is a sample payload an MCP server may reply with:
+And here is a sample payload an MCP server may reply with:
 
 ```json
 {
@@ -139,7 +140,7 @@ The client passes that text back to the model, which can then answer the user's 
 
 ## 3. Writing an MCP Server
 
-Let's convert the tool we wrote in the previous section from Open WebUI-specific context to a standardized MCP server.
+Let's convert the tool we wrote in [02_Tools.md](02_Tools.md) from Open WebUI-specific context to a standardized MCP server.
 
 We'll use Python's `mcp` module to decorate our functions and run the server as a separate background process that Open WebUI connects to over HTTP.
 
@@ -184,6 +185,10 @@ if __name__ == "__main__":
 
 The SQLite queries inside each function are the same as in `inventory_tool.py`. What changed is only the wrapper around them.
 
+Note the `transport="streamable-http"` argument on the last line. Open WebUI speaks MCP over HTTP—not the stdio transport used by desktop apps like Claude Desktop—so we expose the server at `http://127.0.0.1:8000/mcp`.
+
+### 3.3 Start the server
+
 Make sure the database exists (from [02_Tools.md](02_Tools.md)):
 
 ```bash
@@ -204,7 +209,7 @@ INFO:     Started server process [...]
 INFO:     Waiting for application startup.
 StreamableHTTP session manager started
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press Ctrl+C to quit)
 ```
 
 Leave this terminal open while you work—the server runs in the foreground and stops when you close it or press **Ctrl+C**.
@@ -235,9 +240,9 @@ python inventory_mcp_server.py
 
 With the server running, we can connect Open WebUI to it as an external MCP tool.
 
-### 3.3 Connect Open WebUI to our MCP
+### 3.4 Connect Open WebUI to our MCP
 
-Now we can add our running MCP server address to Open WebUI to use:
+Now we can add our running MCP server address to Open WebUI:
 
 1. Click the profile icon -> **Admin Panel** -> **Settings** -> **Integrations** and click the '+' button on **Manage Tool Servers**:
 
@@ -245,7 +250,7 @@ Now we can add our running MCP server address to Open WebUI to use:
 |:--:|
 | _MCP settings in Open WebUI_ |
 
-2. Select type -> MCP and fill our the rest of the fields, then click save:
+2. Select **Type** → **MCP (Streamable HTTP)**, set **Auth** to **None**, fill out the rest of the fields, then click **Save**:
 
 | ![image4_4.png](../imgs/image4_4.png) |
 |:--:|
