@@ -129,8 +129,6 @@ Example (use your actual repo location):
 C:/code/ai-familiarization/inventory_db/warehouse.db
 ```
 
-Forward slashes work on Windows. Avoid backslash-only paths like `C:\code\...` inside Python strings—they can break due to escape characters.
-
 We'll see our new tool now:
 
 | ![image3_4.png](../imgs/image3_4.png) |
