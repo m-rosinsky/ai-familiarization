@@ -12,7 +12,9 @@ Start here before [01_Setup.md](01_Setup.md). We'll walk through the words and i
 
 ## 1. What is a model?
 
-> A **model** (usually an **LLM**, or large language model) is the trained neural network that reads your prompt and writes a response. Think of it as the brain. On its own, it can't browse the web, query your database, or edit files. Something else has to give it those abilities.
+> A **model** (usually an **LLM**, or large language model) is a trained neural network that reads a prompt and generates a response.
+
+Think of it as the brain. On its own, it can't browse the web, query your database, or edit files. Something else has to give it those abilities.
 
 Say you ask *"How many hammers are in stock?"* The model guesses the next words that best fit your question and what it learned during training. It doesn't magically know about your warehouse. It only knows what was in its training data plus whatever you put in the current chat.
 
@@ -38,9 +40,9 @@ Lots of companies train models or host them for you. They vary in size, speed, c
 
 ## 3. What is an AI client?
 
-> An **AI client** (people also say **host** or **AI app**) is what you actually open and type into. It sends your messages to the model, shows you the reply, and can add **tools**, **MCP servers**, files, and project context on top.
+> An **AI client** (also called a **host** or **AI app**) is the application you use to send prompts to a model and receive its replies.
 
-The model and the client are not the same thing. One model can show up in many clients. One client can be pointed at different models or providers.
+It can also layer on **tools**, **MCP servers**, files, and project context. The model and the client are not the same thing. One model can show up in many clients. One client can be pointed at different models or providers.
 
 | Client | What it is |
 |--------|------------|
