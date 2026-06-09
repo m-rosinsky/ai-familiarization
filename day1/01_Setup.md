@@ -1,5 +1,7 @@
 # Setup
 
+Complete [00_Intro.md](00_Intro.md) before starting this file.
+
 ## Clone this repo
 
 ```bash
