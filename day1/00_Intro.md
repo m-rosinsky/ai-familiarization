@@ -8,8 +8,9 @@ Start here before [01_Setup.md](01_Setup.md). We'll walk through the words and i
 - [2. Models in the wild](#2-models-in-the-wild)
   - [2.1 Model size and naming](#21-model-size-and-naming)
 - [3. What is an AI client?](#3-what-is-an-ai-client)
-- [4. Hosting: where the model runs](#4-hosting-where-the-model-runs)
-- [5. Terminology you'll see in this course](#5-terminology-youll-see-in-this-course)
+- [4. Types of AI applications](#4-types-of-ai-applications)
+- [5. Hosting: where the model runs](#5-hosting-where-the-model-runs)
+- [6. Terminology you'll see in this course](#6-terminology-youll-see-in-this-course)
 
 ## 1. What is a model?
 
@@ -50,7 +51,7 @@ Names like **`llama-3.1-8b-versatile`** encode useful hints: **Llama** (family),
 | **Mistral** | Mistral Large, Codestral | Popular for APIs and self-hosted setups |
 | **xAI** | Grok | Powers Grok on X and Grok Build |
 | **Groq** (this course) | Hosts Llama, Mixtral, etc. | An **inference provider**, not a model lab. They run open models fast on their own hardware |
-| **Cursor** | Composer series | Cursor is mostly known for their IDE of the same name, but also developers the Composer models |
+| **Cursor** | Composer series | Cursor is mostly known for their IDE of the same name, but also develops the Composer models |
 
 **Proprietary vs open-weights:** Models like GPT-4 and Claude you only reach through the vendor's app or API. Open-weights models like Llama can be downloaded and run on your machine with [Ollama](https://ollama.com/), or hosted by someone like Groq.
 
@@ -73,7 +74,29 @@ It can also layer on **tools**, **MCP servers**, files, and project context. The
 
 **Provider vs client:** Groq, OpenAI, and Anthropic are **providers**. They run the model and offer an API. Open WebUI and Cursor are **clients**. They call those APIs for you. You can change providers without switching apps, which is exactly what we do when we point Open WebUI at Groq.
 
-## 4. Hosting: where the model runs
+## 4. Types of AI applications
+
+> An **AI application** is software built for a particular way of working with a model: chatting in a window, editing a repo, running tasks from a terminal, and so on.
+
+The model might be the same underneath. What changes is the interface, the context the app can see, and how much it can do on your behalf.
+
+| Type | Where you work | What it's good at | Examples |
+|------|----------------|-------------------|----------|
+| **Web chat** | Browser | General Q&A, documents, light tool use | ChatGPT (web), Open WebUI in a browser |
+| **Desktop app** | Native app on your OS | Same as chat, plus tighter OS integration (files, shortcuts) | Open WebUI Desktop, Claude Desktop |
+| **IDE** | Inside a code editor | Writing and refactoring code, repo-aware chat, inline suggestions | Cursor, Windsurf, VS Code + Copilot |
+| **CLI** | Terminal | Scriptable workflows, automation, coding tasks without a GUI | Claude Code, Cursor Agent, OpenAI Codex CLI |
+| **Build / agent platforms** | Vendor-specific UI | Multi-step tasks, connectors, prototyping full workflows | Grok Build, OpenAI Agent Builder |
+
+A few patterns worth knowing:
+
+- **One company, many shapes.** Anthropic ships Claude Desktop (app) and Claude Code (CLI). Cursor is an IDE first, but Cursor Agent runs from the terminal too. Same provider, different shells around the model.
+- **Context follows the app.** A chat app mostly sees your conversation. An IDE sees open files and your project tree. A CLI agent can be pointed at a folder and wired into scripts or CI. More context usually means better answers for that kind of work.
+- **Agents show up everywhere.** "Agent" in the product name often means the app can loop: plan, call tools, edit files, and keep going until a task is done. That behavior can live in an IDE, a desktop app, or a CLI.
+
+For Day 1 we use **Open WebUI Desktop**: a desktop chat app that connects to a cloud model (Groq) and can attach **tools** and **MCP servers**. Later you can reuse the same MCP server from Cursor or other clients without rewriting it.
+
+## 5. Hosting: where the model runs
 
 | Mode | Meaning | Example in this course |
 |------|---------|------------------------|
@@ -83,7 +106,7 @@ It can also layer on **tools**, **MCP servers**, files, and project context. The
 
 Running locally keeps more data on your machine, but bigger models want a good GPU. Cloud is easier to get started with, so that's what we use on Day 1.
 
-## 5. Terminology you'll see in this course
+## 6. Terminology you'll see in this course
 
 ### Prompt and context
 
