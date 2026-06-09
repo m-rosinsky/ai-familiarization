@@ -6,6 +6,7 @@ Start here before [01_Setup.md](01_Setup.md). We'll walk through the words and i
 
 - [1. What is a model?](#1-what-is-a-model)
 - [2. Models in the wild](#2-models-in-the-wild)
+  - [2.1 Model size and naming](#21-model-size-and-naming)
 - [3. What is an AI client?](#3-what-is-an-ai-client)
 - [4. Hosting: where the model runs](#4-hosting-where-the-model-runs)
 - [5. Terminology you'll see in this course](#5-terminology-youll-see-in-this-course)
@@ -24,15 +25,32 @@ In this course we use **`llama-3.1-8b-versatile`** through Groq: an open Llama m
 
 Lots of companies train models or host them for you. They vary in size, speed, cost, and how smart they feel. You don't need to memorize every name. Just know who's out there.
 
+### 2.1 Model size and naming
+
+> **Model size** usually means how many **parameters** the model has: the internal weights it learned during training.
+
+You'll see shorthand like **8B**, **70B**, or **1T**:
+
+| Shorthand | Means | Example |
+|-----------|--------|---------|
+| **B** | Billion parameters | **8B** = 8 billion (our course model is in this range) |
+| **M** | Million parameters | Smaller or specialized models |
+| **T** | Trillion parameters | **1T model** = about one trillion parameters |
+
+When someone says *"a 1T model,"* they mean a very large network with on the order of a trillion parameters. More parameters often means stronger reasoning and broader knowledge, but also more compute, higher cost, and slower responses. Not every headline number tells the whole story: some models advertise **total** parameters while only a **subset** is "active" on each request (a **mixture-of-experts**, or MoE, design). The label on the tin and how it behaves in practice can differ.
+
+Names like **`llama-3.1-8b-versatile`** encode useful hints: **Llama** (family), **3.1** (version), **8b** (8 billion parameters), **versatile** (what the host tuned it for). Bigger is not always better for your job; an 8B model is a sensible default for learning and many everyday tasks.
+
 | Provider | Example models | Notes |
 |----------|----------------|-------|
-| **OpenAI** | GPT-4o, o-series | ChatGPT and APIs; strong all-around reasoning |
-| **Anthropic** | Claude Sonnet, Opus, Haiku | Claude apps and Claude Code; great at code and long docs |
+| **OpenAI** | GPT-4o, o-series, Codex | ChatGPT and APIs; strong all-around reasoning |
+| **Anthropic** | Claude Sonnet, Opus, Haiku, Mythos | Claude apps and Claude Code; great at code and long docs |
 | **Google** | Gemini | Tied into Google Workspace and Vertex AI |
 | **Meta** | Llama 3.x | Open weights; often run locally or via Groq, Together, Ollama |
 | **Mistral** | Mistral Large, Codestral | Popular for APIs and self-hosted setups |
 | **xAI** | Grok | Powers Grok on X and Grok Build |
 | **Groq** (this course) | Hosts Llama, Mixtral, etc. | An **inference provider**, not a model lab. They run open models fast on their own hardware |
+| **Cursor** | Composer series | Cursor is mostly known for their IDE of the same name, but also developers the Composer models |
 
 **Proprietary vs open-weights:** Models like GPT-4 and Claude you only reach through the vendor's app or API. Open-weights models like Llama can be downloaded and run on your machine with [Ollama](https://ollama.com/), or hosted by someone like Groq.
 
