@@ -152,3 +152,7 @@ Extend your warehouse skill to handle the write operations you added in the [02_
 - Require the model to **confirm** a change with the user before removing an item or setting a quantity to zero.
 - Tell it to **read back** the new value (via `query_item_details`) after a write so the user sees the result.
 - Test a deliberately ambiguous prompt like "we got more screws"—does the skill make the model ask how many, rather than guessing?
+
+---
+
+**Next step:** [05_Loops.md](05_Loops.md). Put tools, MCP, and your skill together and watch the model chain several calls into an agent loop.
