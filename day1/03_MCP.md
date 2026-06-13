@@ -267,3 +267,7 @@ Now we can add our running MCP server address to Open WebUI:
 | ![image4_6.png](../imgs/image4_6.png) |
 |:--:|
 | _MCP running in chat_ |
+
+---
+
+**Next step:** [04_Skills.md](04_Skills.md). Smaller models often misuse the tools you just wired up—write a skill file to steer them.

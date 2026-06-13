@@ -10,6 +10,7 @@ Complete [01_Setup.md](01_Setup.md) before starting this file.
   - [3.1 Install the SQLite CLI](#31-install-the-sqlite-cli)
   - [3.2 Run queries with SQLite](#32-run-queries-with-sqlite)
   - [3.3 Create a Tool file](#33-create-a-tool-file)
+  - [3.4 Practical Exercise](#34-practical-exercise)
 
 ## 1. What is an AI Tool?
 
@@ -38,7 +39,7 @@ You should see:
 Database initialized successfully with inventory data!
 ```
 
-Re-running the script is safe, it won't duplicate existing rows.
+Re-running the script is safe—it won't duplicate existing rows.
 
 ## 3. Query the database manually
 
@@ -101,7 +102,7 @@ We want to enable our AI model to interface with our database so we can prompt i
 
 For this, we'll need to create a Tool.
 
-In Open WebUI, Navigate to Workspace -> Tools -> New Tool:
+In Open WebUI, navigate to Workspace -> Tools -> New Tool:
 
 | ![image3_2.png](../imgs/image3_2.png) |
 |:--:|
@@ -109,7 +110,7 @@ In Open WebUI, Navigate to Workspace -> Tools -> New Tool:
 
 This will open the Python file that Open WebUI references to make tool calls.
 
-Take a second to look at some of the sample tools that Open WebUI comes preloaded with such as one to check the weather, and another to perform simple calculations.
+Take a second to look at some of the sample tools that Open WebUI comes preloaded with, such as one to check the weather and another to perform simple calculations.
 
 We'll give the tool a name, a description, and replace the contents with the code found in `inventory_db/inventory_tool.py`:
 

@@ -46,7 +46,7 @@ Go to the [Open WebUI Desktop download page](https://github.com/open-webui/deskt
 
 We now want to point Open WebUI to our Groq models.
 
-5. Tap your profile icon, hit **Admin Panel**, **Settings**, **Connections**: 
+5. Tap your profile icon, hit **Admin Panel**, **Settings**, **Connections**:
 
 | ![image2_3.png](../imgs/image2_3.png) |
 |:--:|

@@ -45,7 +45,7 @@ Names like **`llama-3.1-8b-versatile`** encode useful hints: **Llama** (family),
 | Provider | Example models | Notes |
 |----------|----------------|-------|
 | **OpenAI** | GPT-4o, o-series, Codex | ChatGPT and APIs; strong all-around reasoning |
-| **Anthropic** | Claude Sonnet, Opus, Haiku, Mythos | Claude apps and Claude Code; great at code and long docs |
+| **Anthropic** | Claude Sonnet, Opus, Haiku | Claude apps and Claude Code; great at code and long docs |
 | **Google** | Gemini | Tied into Google Workspace and Vertex AI |
 | **Meta** | Llama 3.x | Open weights; often run locally or via Groq, Together, Ollama |
 | **Mistral** | Mistral Large, Codestral | Popular for APIs and self-hosted setups |
