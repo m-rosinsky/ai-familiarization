@@ -234,7 +234,7 @@ python inventory_mcp_server.py
 **macOS / Linux / Git Bash:**
 
 ```bash
-export WAREHOUSE_DB_PATH="C:/code/ai-familiarization/inventory_db/warehouse.db"
+export WAREHOUSE_DB_PATH="~/code/ai-familiarization/inventory_db/warehouse.db"
 python inventory_mcp_server.py
 ```
 
