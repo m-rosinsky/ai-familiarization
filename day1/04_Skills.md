@@ -4,7 +4,7 @@ Complete [03_MCP.md](03_MCP.md) before starting this file.
 
 ## Contents
 
-- [1. The problem: small models and tool use](#1-the-problem-small-models-and-tool-use)
+- [1. The problem: models and tool use](#1-the-problem-models-and-tool-use)
 - [2. What is a skill?](#2-what-is-a-skill)
 - [3. Anatomy of a skill file](#3-anatomy-of-a-skill-file)
 - [4. Write a warehouse skill](#4-write-a-warehouse-skill)
@@ -12,11 +12,11 @@ Complete [03_MCP.md](03_MCP.md) before starting this file.
 - [6. Skills in other clients](#6-skills-in-other-clients)
 - [7. Practical Exercise](#7-practical-exercise)
 
-## 1. The problem: small models and tool use
+## 1. The problem: models and tool use
 
 By now you've given the model a way to reach your warehouse data twice—once as an Open WebUI **Tool** ([02_Tools.md](02_Tools.md)) and once over **MCP** ([03_MCP.md](03_MCP.md)). Wiring up the connection is only half the battle. The model still has to *decide* to use it, *pick* the right tool, and *fill in* the arguments correctly.
 
-Large frontier models are good at this. Smaller open-weights models—like the **`llama-3.1-8b-versatile`** we run through Groq—often are not. With an 8B model you'll routinely see:
+Large frontier models are good at this. Even a capable open-weights model—like the **`llama-3.3-70b-versatile`** we run through Groq—can miss the mark without clear steering. You'll routinely see:
 
 - **Skipping the tool.** You ask "how many hammers are in stock?" and it confidently makes up a number instead of calling `query_item_details`.
 - **Wrong tool or wrong arguments.** It calls `query_warehouse_items` when it should look up a single item, or passes `item="hammer"` instead of `item_name="hammers"`.
@@ -36,7 +36,7 @@ You met this definition briefly in [00_Intro.md](00_Intro.md). Now we'll use it.
 
 A skill is plain text. The client injects it into the model's **system context**—the same place tool definitions live (see [03_MCP.md](03_MCP.md), Section 2.1)—so it shapes behavior without ever appearing in the chat transcript. Because it's just instructions, the same skill file can be reused across clients and even across models.
 
-This is why skills pair so well with smaller models: you can't make an 8B model bigger, but you *can* hand it a tighter playbook so it uses its tools reliably.
+This is why skills pair so well with tool use: you can't change the model's weights mid-chat, but you *can* hand it a tighter playbook so it uses its tools reliably.
 
 ## 3. Anatomy of a skill file
 
@@ -115,14 +115,14 @@ live SQLite database:
   → list the names returned.
 ```
 
-Notice what this does. It names the exact tools, spells out the trigger for each, pins the argument name (`item_name`), and forbids guessing. Those are precisely the things the 8B model was getting wrong on its own.
+Notice what this does. It names the exact tools, spells out the trigger for each, pins the argument name (`item_name`), and forbids guessing. Those are precisely the things the model was getting wrong on its own.
 
 ## 5. Load the skill in Open WebUI
 
 Open WebUI doesn't have a dedicated "Skills" feature, but a skill is just instructions for the **system context**—and Open WebUI lets you set that directly. The cleanest way is to bundle the skill and the tool together as a custom **Model**, so anyone who selects it inherits both.
 
 1. Go to **Workspace** → **Models** → **+** to create a new model.
-2. Set the **Base Model** to **`llama-3.1-8b-versatile`** (the Groq model from [01_Setup.md](01_Setup.md)).
+2. Set the **Base Model** to **`llama-3.3-70b-versatile`** (the Groq model from [01_Setup.md](01_Setup.md)).
 3. Give it a name like `Warehouse Assistant`.
 4. Paste the **body** of `warehouse_skill.md` into the **System Prompt** field. (You can include the instructions; the `---` frontmatter is for skill-aware clients and is optional here.)
 5. Under the model's **Tools** (or **Integrations**), attach the warehouse tool from [02_Tools.md](02_Tools.md) or the MCP server from [03_MCP.md](03_MCP.md).

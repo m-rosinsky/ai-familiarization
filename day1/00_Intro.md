@@ -16,11 +16,7 @@ Start here before [01_Setup.md](01_Setup.md). We'll walk through the words and i
 
 > A **model** (usually an **LLM**, or large language model) is a trained neural network that reads a prompt and generates a response.
 
-Think of it as the brain. On its own, it can't browse the web, query your database, or edit files. Something else has to give it those abilities.
-
-Say you ask *"How many hammers are in stock?"* The model guesses the next words that best fit your question and what it learned during training. It doesn't magically know about your warehouse. It only knows what was in its training data plus whatever you put in the current chat.
-
-In this course we use **`llama-3.1-8b-versatile`** through Groq: an open Llama model, running on Groq's servers, that you talk to through Open WebUI.
+In this course we use **`llama-3.3-70b-versatile`** through Groq: an open Llama model, running on Groq's servers, that you talk to through Open WebUI.
 
 ## 2. Models in the wild
 
@@ -34,13 +30,13 @@ You'll see shorthand like **8B**, **70B**, or **1T**:
 
 | Shorthand | Means | Example |
 |-----------|--------|---------|
-| **B** | Billion parameters | **8B** = 8 billion (our course model is in this range) |
+| **B** | Billion parameters | **8B** = 8 billion; **70B** = 70 billion (our course model) |
 | **M** | Million parameters | Smaller or specialized models |
 | **T** | Trillion parameters | **1T model** = about one trillion parameters |
 
 When someone says *"a 1T model,"* they mean a very large network with on the order of a trillion parameters. More parameters often means stronger reasoning and broader knowledge, but also more compute, higher cost, and slower responses. Not every headline number tells the whole story: some models advertise **total** parameters while only a **subset** is "active" on each request (a **mixture-of-experts**, or MoE, design). The label on the tin and how it behaves in practice can differ.
 
-Names like **`llama-3.1-8b-versatile`** encode useful hints: **Llama** (family), **3.1** (version), **8b** (8 billion parameters), **versatile** (what the host tuned it for). Bigger is not always better for your job; an 8B model is a sensible default for learning and many everyday tasks.
+Names like **`llama-3.3-70b-versatile`** encode useful hints: **Llama** (family), **3.3** (version), **70b** (70 billion parameters), **versatile** (what the host tuned it for). Bigger is not always better for your job; a 70B model is a strong default for learning and many everyday tasks.
 
 | Provider | Example models | Notes |
 |----------|----------------|-------|
@@ -55,7 +51,7 @@ Names like **`llama-3.1-8b-versatile`** encode useful hints: **Llama** (family),
 
 **Proprietary vs open-weights:** Models like GPT-4 and Claude you only reach through the vendor's app or API. Open-weights models like Llama can be downloaded and run on your machine with [Ollama](https://ollama.com/), or hosted by someone like Groq.
 
-**Picking a model:** Bigger models usually reason better, but they cost more and feel slower. Smaller ones (like the 8B Llama we use) are plenty for learning and plenty of real work. Teams often mix and match: something quick for easy questions, something heavier for hard ones.
+**Picking a model:** Bigger models usually reason better, but they cost more and feel slower. A mid-size model (like the 70B Llama we use) is a good balance for learning and plenty of real work. Teams often mix and match: something quick for easy questions, something heavier for hard ones.
 
 ## 3. What is an AI client?
 

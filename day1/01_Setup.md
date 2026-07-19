@@ -70,7 +70,7 @@ We now want to point Open WebUI to our Groq models.
 
 7. Press **New Chat**. You should now see a dropdown of models in the upper-left corner:
 
-   - Select **`llama-3.1-8b-versatile`**
+   - Select **`llama-3.3-70b-versatile`**
 
 | ![image2_5.png](../imgs/image2_5.png) |
 |:--:|
