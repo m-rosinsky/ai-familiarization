@@ -140,9 +140,10 @@ The file you wrote isn't tied to Open WebUI. The same idea shows up across the e
 |--------|-------------------|-------|
 | **Cursor** | `.cursor/skills/<name>/SKILL.md` | **Agent Skills**; the agent loads one when your request matches its `description`. |
 | **Claude** | Claude **Skills** | Packaged instructions (often with helper files) the model loads on demand. |
+| **Grok Build** | `.grok/skills/<name>/SKILL.md` | Same frontmatter pattern; also reads some Claude/Cursor skill locations. Day 2 wires the warehouse skill here. |
 | **Open WebUI** | System Prompt on a custom Model | No native skill type; the system prompt fills the same role, as we did above. |
 
-Because skills are plain instructions rather than code, the warehouse playbook you wrote can move between these clients with little more than a copy-paste. Pair it with the portable MCP server from [03_MCP.md](03_MCP.md) and you have a tool *and* the judgment to use it, both reusable across apps.
+Because skills are plain instructions rather than code, the warehouse playbook you wrote can move between these clients with little more than a copy-paste. Pair it with the portable MCP server from [03_MCP.md](03_MCP.md) and you have a tool *and* the judgment to use it, both reusable across apps. You will do that transfer for real in [Day 2 - 02_MCP_Skills.md](../day2/02_MCP_Skills.md).
 
 ## 7. Practical Exercise
 

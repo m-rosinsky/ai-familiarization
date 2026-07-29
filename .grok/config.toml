@@ -1,0 +1,7 @@
+# Project-scoped MCP for Day 2. Start the warehouse server first:
+#   cd inventory_db && python inventory_mcp_server.py
+# Endpoint must match Day 1 (streamable HTTP).
+
+[mcp_servers.warehouse]
+url = "http://127.0.0.1:8000/mcp"
+enabled = true
