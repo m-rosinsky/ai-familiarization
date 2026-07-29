@@ -46,7 +46,7 @@ The cycle has three beats:
    └────────────► [ final answer ] ─────────────────┘
 ```
 
-Plan, act, observe—then decide whether to loop again or stop. Tools and MCP ([02_Tools.md](02_Tools.md), [03_MCP.md](03_MCP.md)) are what give the loop something to *do*; the skill ([04_Skills.md](04_Skills.md)) is what keeps it on track.
+Plan, act, observe-then decide whether to loop again or stop. Tools and MCP ([02_Tools.md](02_Tools.md), [03_MCP.md](03_MCP.md)) are what give the loop something to *do*; the skill ([04_Skills.md](04_Skills.md)) is what keeps it on track.
 
 ## 3. The loop, step by step
 
@@ -61,21 +61,21 @@ Here's what the client and model actually pass back and forth for "which item do
 | 5 | **Client** | Returns `Item: hammers \| Quantity in stock: 45 \| Location: Aisle 3A`. |
 | 6 | **Model** | Proposes `query_item_details(item_name="measuring tapes")`. |
 | 7 | **Client** | Returns `... Quantity in stock: 18 \| Location: Aisle 2A`. |
-| 8–11 | **Model + Client** | Repeats for `screwdrivers` (120) and `screws (100pk)` (350). |
+| 8-11 | **Model + Client** | Repeats for `screwdrivers` (120) and `screws (100pk)` (350). |
 | 12 | **Model** | Has all four quantities. No more tools needed. Compares: 18 is smallest. |
-| 13 | **Model** | Final answer: "We have the fewest measuring tapes—18 in stock, in Aisle 2A." |
+| 13 | **Model** | Final answer: "We have the fewest measuring tapes-18 in stock, in Aisle 2A." |
 
 Notice turn 12: the loop ends when the model decides it has enough information, not because the client told it to stop. Each tool result became part of the context the model used to plan its next move. The same prompt, asked of a database with different data, would loop a different number of times.
 
 ## 4. Watch it happen in Open WebUI
 
-You don't need to write any new code—your tool (or MCP server) from the earlier lessons already supports this. Use the `Warehouse Assistant` model you set up in [04_Skills.md](04_Skills.md) (or any chat with the warehouse tool enabled) and try:
+You don't need to write any new code-your tool (or MCP server) from the earlier lessons already supports this. Use the `Warehouse Assistant` model you set up in [04_Skills.md](04_Skills.md) (or any chat with the warehouse tool enabled) and try:
 
 ```text
 Which item do we have the fewest of, and where is it?
 ```
 
-While it works, expand the tool-call details in the response. Open WebUI shows each call the model made and the result it got back. You should see several calls stack up—one to list items, then one per item—before the final sentence. That stack *is* the loop.
+While it works, expand the tool-call details in the response. Open WebUI shows each call the model made and the result it got back. You should see several calls stack up-one to list items, then one per item-before the final sentence. That stack *is* the loop.
 
 A few more prompts that force multiple steps:
 
@@ -105,10 +105,10 @@ You now have every piece behind the industry's favorite buzzword.
 
 Strip away the marketing and an "agent" is just what you've already built:
 
-- a **model** ([00_Intro.md](00_Intro.md)) —
-- reached through a **client** ([01_Setup.md](01_Setup.md)) —
-- given **tools** ([02_Tools.md](02_Tools.md)), optionally over **MCP** ([03_MCP.md](03_MCP.md)) —
-- steered by a **skill** ([04_Skills.md](04_Skills.md)) —
+- a **model** ([00_Intro.md](00_Intro.md)) -
+- reached through a **client** ([01_Setup.md](01_Setup.md)) -
+- given **tools** ([02_Tools.md](02_Tools.md)), optionally over **MCP** ([03_MCP.md](03_MCP.md)) -
+- steered by a **skill** ([04_Skills.md](04_Skills.md)) -
 - running in a **loop** (this file).
 
 When a product calls itself an "AI agent," this is the machinery underneath. The warehouse assistant you built is a small but genuine agent: it plans, acts, observes, and repeats until your question is answered.

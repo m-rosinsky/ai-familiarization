@@ -16,11 +16,11 @@ Complete [02_Tools.md](02_Tools.md) before starting this file.
 
 ## 1. What is MCP?
 
-In [02_Tools.md](02_Tools.md), we gave our AI a **Tool**: a Python function it could call to query our warehouse database. That tool lives inside Open WebUI—name, description, code, and settings are all defined in that one app.
+In [02_Tools.md](02_Tools.md), we gave our AI a **Tool**: a Python function it could call to query our warehouse database. That tool lives inside Open WebUI-name, description, code, and settings are all defined in that one app.
 
-**MCP** solves the same problem at a higher level. Instead of writing a separate integration for every host, you run an MCP server that advertises its tools (and other capabilities) in a standard format. Any client that speaks MCP can connect, list what is available, and let the model invoke those tools—much like enabling our inventory tool under **Integrations**, but portable across apps.
+**MCP** solves the same problem at a higher level. Instead of writing a separate integration for every host, you run an MCP server that advertises its tools (and other capabilities) in a standard format. Any client that speaks MCP can connect, list what is available, and let the model invoke those tools-much like enabling our inventory tool under **Integrations**, but portable across apps.
 
-> An open standard for connecting AI applications to external systems—databases, APIs, files, and other services—through a shared protocol. An MCP *server* exposes capabilities; an MCP *client* (such as Cursor or Open WebUI) lets the model discover and call them.
+> An open standard for connecting AI applications to external systems-databases, APIs, files, and other services-through a shared protocol. An MCP *server* exposes capabilities; an MCP *client* (such as Cursor or Open WebUI) lets the model discover and call them.
 
 So: a Tool is what the model calls; MCP is how those tools (and related context) are packaged and delivered so they work beyond a single platform.
 
@@ -90,9 +90,9 @@ And here is a sample payload an MCP server may reply with:
 }
 ```
 
-A Python function with no parameters—such as `query_warehouse_items()`—maps to an object schema with empty `properties` and an explicit `required` array. Omitting those fields can cause parsing issues in some clients.
+A Python function with no parameters-such as `query_warehouse_items()`-maps to an object schema with empty `properties` and an explicit `required` array. Omitting those fields can cause parsing issues in some clients.
 
-The client receives this list and injects it into the **LLM's system context**—not into the chat transcript itself. It is the model that learns which tools exist and when to use them; the client application is the intermediary that fetches tool definitions from the MCP server and relays tool calls on the model's behalf.
+The client receives this list and injects it into the **LLM's system context**-not into the chat transcript itself. It is the model that learns which tools exist and when to use them; the client application is the intermediary that fetches tool definitions from the MCP server and relays tool calls on the model's behalf.
 
 ### 2.2 Tool Calling
 
@@ -158,9 +158,9 @@ In [02_Tools.md](02_Tools.md), our database logic lived inside Open WebUI's prop
 
 The conversion follows three changes:
 
-1. **Replace the `Tools` wrapper with `FastMCP`** — this registers our server name and handles the JSON-RPC protocol from Section 2.
-2. **Mark each query function with `@mcp.tool()`** — FastMCP reads the function name, type hints, and docstring to build the `tools/list` schemas automatically.
-3. **Configure the database path via environment variable** — instead of Valves, the server reads `WAREHOUSE_DB_PATH` or defaults to `warehouse.db` in the same folder.
+1. **Replace the `Tools` wrapper with `FastMCP`** - this registers our server name and handles the JSON-RPC protocol from Section 2.
+2. **Mark each query function with `@mcp.tool()`** - FastMCP reads the function name, type hints, and docstring to build the `tools/list` schemas automatically.
+3. **Configure the database path via environment variable** - instead of Valves, the server reads `WAREHOUSE_DB_PATH` or defaults to `warehouse.db` in the same folder.
 
 Open `inventory_db/inventory_mcp_server.py`. The structure looks like this:
 
@@ -185,7 +185,7 @@ if __name__ == "__main__":
 
 The SQLite queries inside each function are the same as in `inventory_tool.py`. What changed is only the wrapper around them.
 
-Note the `transport="streamable-http"` argument on the last line. Open WebUI speaks MCP over HTTP—not the stdio transport used by desktop apps like Claude Desktop—so we expose the server at `http://127.0.0.1:8000/mcp`.
+Note the `transport="streamable-http"` argument on the last line. Open WebUI speaks MCP over HTTP-not the stdio transport used by desktop apps like Claude Desktop-so we expose the server at `http://127.0.0.1:8000/mcp`.
 
 ### 3.3 Start the server
 
@@ -212,7 +212,7 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press Ctrl+C to quit)
 ```
 
-Leave this terminal open while you work—the server runs in the foreground and stops when you close it or press **Ctrl+C**.
+Leave this terminal open while you work-the server runs in the foreground and stops when you close it or press **Ctrl+C**.
 
 The MCP endpoint is:
 
@@ -270,4 +270,4 @@ Now we can add our running MCP server address to Open WebUI:
 
 ---
 
-**Next step:** [04_Skills.md](04_Skills.md). Smaller models often misuse the tools you just wired up—write a skill file to steer them.
+**Next step:** [04_Skills.md](04_Skills.md). Smaller models often misuse the tools you just wired up-write a skill file to steer them.

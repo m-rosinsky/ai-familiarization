@@ -16,7 +16,7 @@ Complete [01_Setup.md](01_Setup.md) before starting this file.
 
 > A specific executable function or API that an AI model can call to interact with the outside world, perform calculations, or fetch data (e.g., a web search tool, a calculator, or a file-writer). The model decides when to use it based on your prompt.
 
-We want our AI to query and update a local warehouse inventory database—not just answer from memory.
+We want our AI to query and update a local warehouse inventory database-not just answer from memory.
 
 To do this, we'll supply our AI with a Tool that tells it how and when to interact with the database. First, set up the database and verify it manually.
 
@@ -39,7 +39,7 @@ You should see:
 Database initialized successfully with inventory data!
 ```
 
-Re-running the script is safe—it won't duplicate existing rows.
+Re-running the script is safe-it won't duplicate existing rows.
 
 ## 3. Query the database manually
 
@@ -122,7 +122,7 @@ Then press **Save**.
 
 #### Configure the database path
 
-Open WebUI runs your tool from its own process—not from `inventory_db/`—so it cannot find `warehouse.db` with a relative path. After saving, open the tool's **Valves** settings and set **db_path** to the full path of your database file.
+Open WebUI runs your tool from its own process-not from `inventory_db/`-so it cannot find `warehouse.db` with a relative path. After saving, open the tool's **Valves** settings and set **db_path** to the full path of your database file.
 
 Example (use your actual repo location):
 

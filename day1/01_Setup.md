@@ -8,6 +8,44 @@ Complete [00_Intro.md](00_Intro.md) before starting this file.
 git clone https://github.com/m-rosinsky/ai-familiarization.git
 ```
 
+## Install Python
+
+You'll need Python 3 to run `inventory_db/init_db.py` in [02_Tools.md](02_Tools.md). No extra packages-only the standard library.
+
+**Windows**
+
+```bash
+winget install Python.Python.3.13
+```
+
+Open a new terminal and verify:
+
+```bash
+python --version
+```
+
+(Or install from [python.org/downloads](https://www.python.org/downloads/) and check **Add python.exe to PATH**.)
+
+**macOS**
+
+```bash
+brew install python
+python3 --version
+```
+
+If you don't have Homebrew, install from [python.org/downloads](https://www.python.org/downloads/) instead.
+
+**Linux**
+
+```bash
+sudo apt update && sudo apt install -y python3
+python3 --version
+```
+
+(On Fedora/RHEL: `sudo dnf install -y python3`.)
+
+> If `python` isn't found, use `python3` (common on macOS and Linux). Same idea later: `python3 init_db.py`.
+
 ## Get a Groq API key
 
 Open WebUI will use [Groq](https://groq.com/) to run cloud-hosted models. Groq offers a free tier and does not require a credit card.
@@ -22,7 +60,7 @@ Keep the key somewhere safe. You will paste it into Open WebUI in step 6 of [Lau
 
 > Do not commit your API key to git or share it publicly.
 
-> **Warning:** Groq's free tier provides enough tokens to get you through this class, but it has daily rate limits. Stick to the course outline—avoid extra experimentation or unrelated prompts, or you may hit your limit before the course is over.
+> **Warning:** Groq's free tier provides enough tokens to get you through this class, but it has daily rate limits. Stick to the course outline-avoid extra experimentation or unrelated prompts, or you may hit your limit before the course is over.
 
 ## Download Open WebUI Desktop
 

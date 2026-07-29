@@ -14,9 +14,9 @@ Complete [03_MCP.md](03_MCP.md) before starting this file.
 
 ## 1. The problem: models and tool use
 
-By now you've given the model a way to reach your warehouse data twice—once as an Open WebUI **Tool** ([02_Tools.md](02_Tools.md)) and once over **MCP** ([03_MCP.md](03_MCP.md)). Wiring up the connection is only half the battle. The model still has to *decide* to use it, *pick* the right tool, and *fill in* the arguments correctly.
+By now you've given the model a way to reach your warehouse data twice-once as an Open WebUI **Tool** ([02_Tools.md](02_Tools.md)) and once over **MCP** ([03_MCP.md](03_MCP.md)). Wiring up the connection is only half the battle. The model still has to *decide* to use it, *pick* the right tool, and *fill in* the arguments correctly.
 
-Large frontier models are good at this. Even a capable open-weights model—like the **`llama-3.3-70b-versatile`** we run through Groq—can miss the mark without clear steering. You'll routinely see:
+Large frontier models are good at this. Even a capable open-weights model-like the **`llama-3.3-70b-versatile`** we run through Groq-can miss the mark without clear steering. You'll routinely see:
 
 - **Skipping the tool.** You ask "how many hammers are in stock?" and it confidently makes up a number instead of calling `query_item_details`.
 - **Wrong tool or wrong arguments.** It calls `query_warehouse_items` when it should look up a single item, or passes `item="hammer"` instead of `item_name="hammers"`.
@@ -27,14 +27,14 @@ None of this means the tool is broken. The model simply wasn't steered clearly e
 
 ## 2. What is a skill?
 
-> A **skill** is a packaged set of instructions a client loads to steer the model toward a task—when to act, which tools to reach for, and how to format the work. It's a reusable playbook, not runnable code.
+> A **skill** is a packaged set of instructions a client loads to steer the model toward a task-when to act, which tools to reach for, and how to format the work. It's a reusable playbook, not runnable code.
 
 You met this definition briefly in [00_Intro.md](00_Intro.md). Now we'll use it. The key idea:
 
 - A **tool** gives the model a new *ability* (query the database).
 - A **skill** gives the model *judgment* about that ability (call `query_item_details` whenever someone asks about a specific item, and never guess a quantity).
 
-A skill is plain text. The client injects it into the model's **system context**—the same place tool definitions live (see [03_MCP.md](03_MCP.md), Section 2.1)—so it shapes behavior without ever appearing in the chat transcript. Because it's just instructions, the same skill file can be reused across clients and even across models.
+A skill is plain text. The client injects it into the model's **system context**-the same place tool definitions live (see [03_MCP.md](03_MCP.md), Section 2.1)-so it shapes behavior without ever appearing in the chat transcript. Because it's just instructions, the same skill file can be reused across clients and even across models.
 
 This is why skills pair so well with tool use: you can't change the model's weights mid-chat, but you *can* hand it a tighter playbook so it uses its tools reliably.
 
@@ -42,8 +42,8 @@ This is why skills pair so well with tool use: you can't change the model's weig
 
 Most clients (Cursor **Agent Skills**, Claude **Skills**, and similar) store a skill as a Markdown file with two parts:
 
-1. **Frontmatter** — a short metadata block at the top, between `---` fences. A `name` and a `description` are the important fields. The client uses the `description` to decide *when* the skill is relevant, so write it to describe the trigger, not just the topic.
-2. **Body** — the instructions themselves: what the task is, which tools to use, the rules to follow, and a few examples.
+1. **Frontmatter** - a short metadata block at the top, between `---` fences. A `name` and a `description` are the important fields. The client uses the `description` to decide *when* the skill is relevant, so write it to describe the trigger, not just the topic.
+2. **Body** - the instructions themselves: what the task is, which tools to use, the rules to follow, and a few examples.
 
 ```markdown
 ---
@@ -61,7 +61,7 @@ A good skill is specific and short. Vague advice ("be helpful with inventory") d
 
 ## 4. Write a warehouse skill
 
-Let's write a skill that fixes the failure modes from Section 1 for our warehouse tools. Create a file named `warehouse_skill.md` (anywhere you like—we'll paste its contents into Open WebUI in the next section):
+Let's write a skill that fixes the failure modes from Section 1 for our warehouse tools. Create a file named `warehouse_skill.md` (anywhere you like-we'll paste its contents into Open WebUI in the next section):
 
 ```markdown
 ---
@@ -74,9 +74,9 @@ description: Use whenever the user asks about warehouse stock, quantities, item 
 You help warehouse staff check inventory. You have two tools backed by a
 live SQLite database:
 
-- `query_warehouse_items` — returns every item name in the inventory.
+- `query_warehouse_items` - returns every item name in the inventory.
   Takes no arguments.
-- `query_item_details` — returns the quantity and location for one item.
+- `query_item_details` - returns the quantity and location for one item.
   Requires `item_name` (a string).
 
 ## When to use the tools
@@ -119,7 +119,7 @@ Notice what this does. It names the exact tools, spells out the trigger for each
 
 ## 5. Load the skill in Open WebUI
 
-Open WebUI doesn't have a dedicated "Skills" feature, but a skill is just instructions for the **system context**—and Open WebUI lets you set that directly. The cleanest way is to bundle the skill and the tool together as a custom **Model**, so anyone who selects it inherits both.
+Open WebUI doesn't have a dedicated "Skills" feature, but a skill is just instructions for the **system context**-and Open WebUI lets you set that directly. The cleanest way is to bundle the skill and the tool together as a custom **Model**, so anyone who selects it inherits both.
 
 1. Go to **Workspace** → **Models** → **+** to create a new model.
 2. Set the **Base Model** to **`llama-3.3-70b-versatile`** (the Groq model from [01_Setup.md](01_Setup.md)).
@@ -130,7 +130,7 @@ Open WebUI doesn't have a dedicated "Skills" feature, but a skill is just instru
 
 > Quick alternative: open the **Controls** panel inside any chat and paste the instructions into the per-chat **System Prompt** field. That works for a single conversation but isn't reusable like a saved model.
 
-Now repeat a few of the prompts from earlier lessons—"how many hammers do we have?", "what items are in the warehouse?", "where are the measuring tapes?". With the skill in place, the model should reach for the right tool, pass the right argument, and answer from the result instead of guessing. Try toggling the system prompt off and on to feel the difference the skill makes.
+Now repeat a few of the prompts from earlier lessons-"how many hammers do we have?", "what items are in the warehouse?", "where are the measuring tapes?". With the skill in place, the model should reach for the right tool, pass the right argument, and answer from the result instead of guessing. Try toggling the system prompt off and on to feel the difference the skill makes.
 
 ## 6. Skills in other clients
 
@@ -151,7 +151,7 @@ Extend your warehouse skill to handle the write operations you added in the [02_
 - Add rules for **when** to call each write tool versus a read tool.
 - Require the model to **confirm** a change with the user before removing an item or setting a quantity to zero.
 - Tell it to **read back** the new value (via `query_item_details`) after a write so the user sees the result.
-- Test a deliberately ambiguous prompt like "we got more screws"—does the skill make the model ask how many, rather than guessing?
+- Test a deliberately ambiguous prompt like "we got more screws"-does the skill make the model ask how many, rather than guessing?
 
 ---
 
