@@ -9,3 +9,8 @@ venv/
 
 # Environment
 .env
+
+# Instructor-only answer keys (never ship to students)
+answers.md
+**/answers.md
+instructor/

@@ -180,8 +180,8 @@ mv .grok/skills/warehouse-inventory.off .grok/skills/warehouse-inventory
 - **One skill playbook** moved from a pasted system prompt into a skill folder the coding agent loads on its own.
 - Tools give capability; skills give judgment; the client is swappable.
 
-That pattern is what we will reuse next on **logs and pcaps**: MCP (or tools) to read evidence, plus a skill that says "do not invent the network-derive it from the artifacts."
+That pattern is what we will reuse next on **logs and pcaps**: search and summarize evidence with the agent, plus a skill that says "do not invent the network-derive it from the artifacts."
 
 ---
 
-**Next step:** Log and pcap analysis lab (coming next). Reconstruct a sample network from synthetic evidence.
+**Next step:** [03_ApexAI_Incident.md](03_ApexAI_Incident.md). Reconstruct the ApexAI network and compromise story from `network_logs/`.

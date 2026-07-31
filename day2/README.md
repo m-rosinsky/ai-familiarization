@@ -8,7 +8,7 @@ Students will:
 
 - Install and authenticate Grok Build with the class API key
 - Reuse **MCP** and **skills** from a coding-agent client (not only Open WebUI)
-- Analyze synthetic logs and pcaps to reconstruct a sample network design (later labs)
+- Analyze synthetic ApexAI logs and pcaps to rebuild a network map and compromise narrative
 
 ## Prerequisites
 
@@ -18,4 +18,4 @@ Finish [Day 1](../day1/README.md) first. You should already know what tools, MCP
 
 1. [01_Setup.md](01_Setup.md) - install Grok Build and authenticate with the class key
 2. [02_MCP_Skills.md](02_MCP_Skills.md) - reuse the Day 1 warehouse MCP and skill in Grok
-3. *(coming next)* Log and pcap analysis - paint a picture of the network
+3. [03_ApexAI_Incident.md](03_ApexAI_Incident.md) - investigate ApexAI evidence under `network_logs/`
